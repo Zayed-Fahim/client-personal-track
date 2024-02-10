@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ThemeButton from "./pages/smallComponents/Home/ThemeButton";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-white dark:bg-[#0F172A] w-full h-screen">
+      <div className="flex justify-between items-center w-full container mx-auto bg-[#18334F] py-3 border-l border-r border-b border-gray-700 rounded-bl-lg rounded-br-lg px-2">
+        <h1 className="text-3xl font-bold text-white">Todo</h1>
+        <ThemeButton />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
