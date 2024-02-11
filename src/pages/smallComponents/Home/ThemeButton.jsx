@@ -33,50 +33,62 @@ const ThemeButton = () => {
     <div className="relative cursor-pointer p-2" ref={buttonRef}>
       <div onClick={handleThemeToggle} className="mb-1 relative">
         {theme === "light" ? (
-          <MdOutlineLightMode size={25} className="text-blue-600" />
+          <MdOutlineLightMode size={20} className="text-blue-600" />
         ) : (
-          <BsMoonStars size={25} className="text-blue-600" />
+          <BsMoonStars size={20} className="text-blue-600" />
         )}
       </div>
       {isVisible && (
-        <ul className="absolute right-[50%] translate-x-[50%] flex flex-col justify-center items-start bg-slate-800 py-1 rounded-xl">
+        <ul className="absolute right-[50%] top-[160%] translate-x-[50%] flex flex-col justify-center items-start border dark:border-none bg-white dark:bg-slate-800 py-1 rounded-xl">
           <li
             onClick={() => {
-              toggleTheme();
+              toggleTheme("light");
               setIsVisible(false);
             }}
             className={`text-white font-semibold flex justify-center items-center gap-4 pl-5 pr-20 py-2 cursor-pointer rounded-tl-lg rounded-tr-lg ${
               theme === "light"
                 ? "hover:bg-none text-blue-500"
-                : "hover:bg-[#2A3749]"
+                : "dark:hover:bg-[#2A3749]"
             }`}
           >
             <MdOutlineLightMode
-              size={25}
+              size={20}
               className={`${
                 theme === "light" ? "text-blue-500" : "text-gray-600"
               }`}
             />
-            <p>Light</p>
+            <p
+              className={`${
+                theme === "light" ? " text-blue-500" : "text-white"
+              }`}
+            >
+              Light
+            </p>
           </li>
           <li
             onClick={() => {
-              toggleTheme();
+              toggleTheme("dark");
               setIsVisible(false);
             }}
-            className={`text-white font-semibold flex justify-center items-center gap-4 pl-5 pr-[82px] py-2 cursor-pointer ${
+            className={`text-white font-semibold flex justify-center items-center gap-4 pl-5 pr-[82px] py-2 cursor-pointer rounded-bl-lg rounded-br-lg ${
               theme === "dark"
-                ? "hover:bg-none text-blue-500"
-                : "hover:bg-[#2A3749]"
+                ? "dark:hover:bg-none text-blue-500"
+                : "hover:bg-[#F8FAFC]"
             }`}
           >
             <BsMoonStars
-              size={25}
+              size={20}
               className={`${
                 theme === "dark" ? "text-blue-500" : "text-gray-600"
               }`}
             />
-            <p>Dark</p>
+            <p
+              className={`${
+                theme === "dark" ? " text-blue-500" : "text-white"
+              }`}
+            >
+              Dark
+            </p>
           </li>
         </ul>
       )}

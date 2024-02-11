@@ -35,9 +35,9 @@ const ThemeProvider = ({ children }) => {
     };
   }, []);
 
-  const toggleTheme = () => {
-    setTheme((previousTheme) => {
-      const currentTheme = previousTheme === "dark" ? "light" : "dark";
+  const toggleTheme = (theme) => {
+    setTheme(() => {
+      const currentTheme = theme;
       localStorage.setItem("theme", currentTheme);
       return currentTheme;
     });
