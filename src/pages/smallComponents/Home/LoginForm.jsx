@@ -90,14 +90,16 @@ const LoginForm = () => {
       </div>
       {errors.password && <InputError text="Password is required !" />}
       <div className="mt-4 flex items-center justify-between text-gray-500">
-        <div>
+        <div className="cursor-pointer">
           <input
             type="checkbox"
             id="remember"
             name="remember"
             className="mr-3"
           />
-          <label htmlFor="remember">Remember me</label>
+          <label htmlFor="remember" className="cursor-pointer">
+            Remember me
+          </label>
         </div>
         <div>
           <p>
