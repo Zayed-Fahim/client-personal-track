@@ -9,7 +9,7 @@ const ThemeButton = () => {
   const { theme, toggleTheme } = useTheme();
 
   const handleThemeToggle = () => {
-    setIsVisible(!isVisible);
+    setIsVisible((prevVisible) => !prevVisible);
   };
 
   const handleClickOutside = (event) => {
@@ -39,7 +39,7 @@ const ThemeButton = () => {
         )}
       </div>
       {isVisible && (
-        <ul className="absolute right-[50%] top-[160%] translate-x-[50%] flex flex-col justify-center items-start border dark:border-none bg-white dark:bg-slate-800 py-1 rounded-xl">
+        <ul className="absolute right-0 lg:right-[50%] top-12 md:top-[120%] lg:translate-x-[50%] flex flex-col justify-center items-start border dark:border-none bg-white dark:bg-slate-800 py-1 rounded-xl">
           <li
             onClick={() => {
               toggleTheme("light");

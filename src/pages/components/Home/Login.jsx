@@ -1,13 +1,47 @@
-import React from "react";
-import LoginForm from "../../smallComponents/Home/LoginForm";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
+import GLOBE from "vanta/dist/vanta.globe.min";
+import useAuth from "../../../hooks/useAuth";
+import useTheme from "../../../hooks/useTheme";
+import LoginForm from "../../smallComponents/Home/LoginForm";
 
 const Login = ({ setIsRedirect }) => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
+  // vanta effect
+  const myRef = useRef(null);
+  const vantaRef = useRef(null);
+  const initVantaEffect = () => {
+    vantaRef.current = GLOBE({
+      el: myRef.current,
+      backgroundColor: theme === "dark" ? "#0f172a" : "#fff",
+      color2: theme === "dark" ? "#fff" : "#0f172a",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1,
+      scaleMobile: 1,
+      size: 1,
+    });
+  };
+  const destroyVantaEffect = () => {
+    if (vantaRef.current) {
+      vantaRef.current.destroy();
+      vantaRef.current = null;
+    }
+  };
+  useEffect(() => {
+    initVantaEffect();
+    return () => {
+      destroyVantaEffect();
+    };
+  }, [theme]);
   const { handleGoogleLogin, handleGitHubLogin, setUser } = useAuth();
   // implement sign-up functionality using firebase authentication (google and github)
+  // google login
   const googleLogin = async () => {
     const toastId = toast.loading("Loading...");
     try {
@@ -53,6 +87,7 @@ const Login = ({ setIsRedirect }) => {
       }
     }
   };
+  // github login
   const githubLogin = async () => {
     const toastId = toast.loading("Loading...");
     try {
@@ -99,7 +134,7 @@ const Login = ({ setIsRedirect }) => {
     }
   };
   return (
-    <div className="py-[154px]">
+    <div className="py-[154px] z-[0]" ref={myRef}>
       <div className="p-8 lg:w-1/2 mx-auto">
         <div className="bg-[#0F172A] dark:bg-white rounded-t-lg p-8">
           <p className="text-center text-sm text-gray-400 font-light">

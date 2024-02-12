@@ -10,7 +10,7 @@ const App = () => {
   return isRedirect ? (
     <RedirectScreen />
   ) : (
-    <div className="bg-white dark:bg-[#0F172A]">
+    <div className="bg-white dark:bg-[#0F172A] min-h-screen">
       <Routes setIsRedirect={setIsRedirect} />
       <ToastContainer />
     </div>

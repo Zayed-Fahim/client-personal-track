@@ -1,11 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
 import RegistrationForm from "../../smallComponents/Home/RegistrationForm";
 import { useNavigate } from "react-router-dom";
+import GLOBE from "vanta/dist/vanta.globe.min";
+import useTheme from "../../../hooks/useTheme";
 
 const Register = ({ setIsRedirect }) => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
+  // vanta effect
+  const myRef = useRef(null);
+  const vantaRef = useRef(null);
+  const initVantaEffect = () => {
+    vantaRef.current = GLOBE({
+      el: myRef.current,
+      backgroundColor: theme === "dark" ? "#0f172a" : "#fff",
+      color2: theme === "dark" ? "#fff" : "#0f172a",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1,
+      scaleMobile: 1,
+      size: 1,
+    });
+  };
+  const destroyVantaEffect = () => {
+    if (vantaRef.current) {
+      vantaRef.current.destroy();
+      vantaRef.current = null;
+    }
+  };
+  useEffect(() => {
+    initVantaEffect();
+    return () => {
+      destroyVantaEffect();
+    };
+  }, [theme]);
   const { handleGoogleLogin, handleGitHubLogin } = useAuth();
   // implement sign-up functionality using firebase authentication (google and github)
   const googleLogin = async () => {
@@ -83,7 +116,7 @@ const Register = ({ setIsRedirect }) => {
     }
   };
   return (
-    <div className="py-[109px]">
+    <div className="py-[109px]" ref={myRef}>
       <div className="p-8 lg:w-1/2 mx-auto">
         <div className="bg-[#0F172A] dark:bg-white rounded-t-lg p-8">
           <p className="text-center text-sm text-gray-400 font-light">
