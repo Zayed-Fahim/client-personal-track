@@ -2,10 +2,10 @@ import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../pages/components/Home/Home";
-import Login from "../pages/components/Home/Login";
 import Register from "../pages/components/Home/Register";
+import Login from "../pages/components/Home/Login";
 
-const Routes = () => {
+const Routes = ({ setIsRedirect }) => {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -17,11 +17,11 @@ const Routes = () => {
         },
         {
           path: "/auth/login",
-          element: <Login />,
+          element: <Login setIsRedirect={setIsRedirect} />,
         },
         {
           path: "/auth/register",
-          element: <Register />,
+          element: <Register setIsRedirect={setIsRedirect} />,
         },
       ],
     },

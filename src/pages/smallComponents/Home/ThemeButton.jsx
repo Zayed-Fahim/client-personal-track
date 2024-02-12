@@ -84,7 +84,7 @@ const ThemeButton = () => {
             />
             <p
               className={`${
-                theme === "dark" ? " text-blue-500" : "text-white"
+                theme === "dark" ? " text-blue-500" : "text-black"
               }`}
             >
               Dark

@@ -7,7 +7,7 @@ const useTheme = () => {
   if (!isClient && !theme) return {};
   if (!theme) {
     throw new Error(
-      "I must wrap my Application with ThemeProvider to use the useTheme"
+      "Must wrap the Application with ThemeProvider to use the useTheme"
     );
   }
   return theme;

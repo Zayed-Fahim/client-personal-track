@@ -11,7 +11,7 @@ const LoginButton = () => {
       {theme === "light" ? (
         <button
           onClick={() => navigate("/auth/login")}
-          className="login-button bg-[#0F172A] dark:bg-[#7DD3FC] after:bg-white dark:after:bg-[#0F172A]"
+          className="login-button bg-[#0F172A] dark:bg-white after:bg-white dark:after:bg-[#0F172A]"
           type="button"
         >
           <span className="login-text font-bold text-white">Login</span>
@@ -20,7 +20,7 @@ const LoginButton = () => {
       ) : (
         <button
           onClick={() => navigate("/auth/login")}
-          className="login-button bg-[#0F172A] dark:bg-[#7DD3FC] after:bg-[#7DD3FC] dark:after:bg-[#0F172A]"
+          className="login-button bg-[#0F172A] dark:bg-white after:bg-white dark:after:bg-[#0F172A]"
           type="button"
         >
           <span className="login-text font-bold text-black">Login</span>
